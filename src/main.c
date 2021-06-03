@@ -8,9 +8,7 @@ int main() {
 
 	pop_bottom(stack);
 	pop_top(stack);
-	printf("---forward---\n");
 	print_stack(stack, false);
-	printf("---backward---\n");
 	print_stack(stack, true);
 
 	delete_stack(stack);

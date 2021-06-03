@@ -158,13 +158,15 @@ int *to_array(t_stack *stack) {
 void print_stack(t_stack *stack, bool backward) {
 	t_node *curr_node;
 
-	if (backward) {
+	if (!backward) {
+		printf("---forward---\n");
 		curr_node = stack->bottom;
 		while (curr_node) {
 			printf("%d \n", curr_node->value);
 			curr_node = curr_node->next;
 		}
 	} else {
+		printf("---backward---\n");
 		curr_node = stack->top;
 		while (curr_node) {
 			printf("%d \n", curr_node->value);
