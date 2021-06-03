@@ -2,6 +2,10 @@
 #include <malloc/_malloc.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct s_node {
 	int value;
@@ -23,5 +27,12 @@ void delete_stack(t_stack *stack);
 
 void append(t_stack *stack, int value);
 void prepend(t_stack *stack, int value);
+int pop_top(t_stack *stack);
+int pop_bottom(t_stack *stack);
+void rotate(t_stack *stack);
+void reverse_rotate(t_stack *stack);
+void send(t_stack *stack_src, t_stack *stack_dst);
+int *to_array(t_stack *stack);
+void print_stack(t_stack *stack, bool backward);
 void fill_stack(t_stack *stack, int *array, size_t size);
 

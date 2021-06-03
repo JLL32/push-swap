@@ -1,7 +1,4 @@
 #include "./stack.h"
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 t_node *new_node(int value) {
 	t_node *node = (t_node *)malloc(sizeof(t_node));
@@ -156,4 +153,22 @@ int *to_array(t_stack *stack) {
 	}
 
 	return (array);
+}
+
+void print_stack(t_stack *stack, bool backward) {
+	t_node *curr_node;
+
+	if (backward) {
+		curr_node = stack->bottom;
+		while (curr_node) {
+			printf("%d \n", curr_node->value);
+			curr_node = curr_node->next;
+		}
+	} else {
+		curr_node = stack->top;
+		while (curr_node) {
+			printf("%d \n", curr_node->value);
+			curr_node = curr_node->prev;
+		}
+	}
 }
