@@ -100,8 +100,8 @@ int pop_bottom(t_stack *stack) {
 		free(temp);
 	} else {
 		temp = stack->bottom->next;
-		stack->bottom = NULL;
 		free(stack->bottom);
+		stack->bottom = NULL;
 		temp->prev = NULL;
 		stack->bottom = temp;
 	}
