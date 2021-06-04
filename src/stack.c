@@ -120,21 +120,21 @@ void fill_stack(t_stack *stack, int *array, size_t size) {
 }
 
 void rotate(t_stack *stack) {
-	printf("r%s", stack->label);
+	printf("r%s\n", stack->label);
 	if (stack->length > 1) {
 		prepend(stack, pop_top(stack));
 	}
 }
 
 void reverse_rotate(t_stack *stack) {
-	printf("rr%s", stack->label);
+	printf("rr%s\n", stack->label);
 	if (stack->length > 1) {
 		append(stack, pop_bottom(stack));
 	}
 }
 
 void send(t_stack *stack_src, t_stack *stack_dst) {
-	printf("s%s", stack_dst->label);
+	printf("s%s\n", stack_dst->label);
 	append(stack_dst, pop_top(stack_src));
 }
 
