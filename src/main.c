@@ -1,14 +1,6 @@
 #include "stack.h"
 #include "solver.h"
 #include "input-utils.h"
-#include <_ctype.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/_types/_size_t.h>
-#include <unistd.h>
-#include <string.h>
-
 
 int main(int argc, char **argv) {
 	int *input;
