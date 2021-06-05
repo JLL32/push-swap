@@ -1,6 +1,7 @@
 #include "stack.h"
 #include "get_next_line/get_next_line.h"
 #include <string.h>
+#include "input-utils.h"
 
 int execute_ops(char **ops, t_stack *stack_a, t_stack *stack_b)
 {
@@ -45,33 +46,19 @@ bool is_sorted(t_stack *stack_a)
     return true;
 }
 
-int *arg_stack_to_int(char **av, size_t size)
-{
-
-    int *arr;
-    int i = 1;
-    arr = malloc(sizeof(int) * size);
-    while (av[i])
-    {
-        arr[i - 1] = atoi(av[i]);
-        i++;
-    }
-
-    return arr;
-}
-
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
     char *line;
     char **ops;
     int i;
 
     i = 0;
-
+	// you might ask why i moved this below statement to the top
+	// try to figure it out on your own ;)
+    int *input = input_from_arg(argc - 1, argv);
     t_stack *stack_a = new_stack("a");
     t_stack *stack_b = new_stack("b");
-    int *arr = arg_stack_to_int(av, ac - 1);
-    fill_stack(stack_a, arr, ac - 1);
+    fill_stack(stack_a, input, argc - 1);
     print_stack(stack_a, false);
     ops = malloc(sizeof(*ops));
     while (get_next_line(0, &line) > 0)
