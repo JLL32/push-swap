@@ -1,17 +1,28 @@
 #include "stack.h"
+#include "solver.h"
+#include "input-utils.h"
+#include <_ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <sys/_types/_size_t.h>
+#include <unistd.h>
+#include <string.h>
 
-int main() {
-	t_stack *stack = new_stack("a");
-	fill_stack(stack, (int[]){1, 2, 3, 4}, 4);
 
-	pop_bottom(stack);
-	pop_top(stack);
-	print_stack(stack, false);
-	print_stack(stack, true);
+int main(int argc, char **argv) {
+	int *input;
+	t_stack *stack_a;
+	t_stack *stack_b;
 
-	delete_stack(stack);
-
-	return 0;
+	input = input_from_arg(argc, argv);
+	stack_a = new_stack("a");
+	stack_b = new_stack("b");
+	fill_stack(stack_a, input, argc - 1);
+	print_stack(stack_a, true);
+	/* solve(stack_a, stack_b, input); */
+	delete_stack(stack_a);
+	delete_stack(stack_b);
+	free(input);
+	return (0);
 }
