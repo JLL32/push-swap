@@ -27,6 +27,16 @@
 ** NOTE: don't forget to free t_slice
 */
 
+static void print_slice(t_slice *slice) {
+	size_t i;
+	i = slice->start;
+
+	while (i < slice->end) {
+		printf("%d\n", slice->data[i]);
+		i++;
+	}
+}
+
 t_slice *get_next_slice(int *arr, size_t size, size_t max_chunk_size) {
 	t_slice *slice;
 	static size_t global_i;
