@@ -64,7 +64,7 @@ int *input_from_arg(int argc, char **argv) {
 	i = 0;
 	while (i < count)
 	{
-		if (!is_number(*argv) || is_dup(res, i + 1, atoi(*argv)))
+		if (!is_number(*argv) || is_dup(res, i, atoi(*argv)))
 		{
 			free(res);
 			panic("Error\n");
