@@ -1,6 +1,5 @@
 #include "stack.h"
 #include "get_next_line/get_next_line.h"
-#include <string.h>
 #include "input-utils.h"
 
 int execute_ops(char **ops, t_stack *stack_a, t_stack *stack_b)
@@ -53,7 +52,7 @@ int main(int argc, char **argv)
     int i;
 
     i = 0;
-	// you might ask why i moved this below statement to the top
+	// you might ask why i moved the statement below to the top
 	// try to figure it out on your own ;)
     int *input = input_from_arg(argc - 1, argv);
     t_stack *stack_a = new_stack("a");

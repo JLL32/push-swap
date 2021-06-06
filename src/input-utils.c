@@ -52,7 +52,7 @@ bool is_dup(int *arr, size_t size, int value)
 	return (false);
 }
 
- int *input_from_arg(int argc, char **argv) {
+int *input_from_arg(int argc, char **argv) {
 	int *res;
 	size_t i;
 	size_t count;
