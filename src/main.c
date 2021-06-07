@@ -2,6 +2,8 @@
 #include "solver.h"
 #include "input-utils.h"
 
+
+// TODO: check if sorted first
 int main(int argc, char **argv) {
 	int *input;
 	t_stack *stack_a;
