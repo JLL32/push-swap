@@ -11,7 +11,8 @@ void reverse_arr(int *arr, size_t size)
 	int temp;
 	size_t end;
 
-
+	if (size < 2)
+		return ;
 	start = 0;
 	end = size - 1;
 	while (start < end)

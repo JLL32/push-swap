@@ -1,4 +1,5 @@
 #include "./stack.h"
+#include <sys/_types/_size_t.h>
 
 t_node *new_node(int value)
 {
@@ -175,7 +176,7 @@ void reverse_rotate(t_stack *stack)
 
 void send(t_stack *stack_src, t_stack *stack_dst)
 {
-	printf("s%s\n", stack_dst->label);
+	printf("p%s\n", stack_dst->label);
 	append(stack_dst, pop_top(stack_src));
 }
 
@@ -198,10 +199,22 @@ int *to_array(t_stack *stack)
 	return (array);
 }
 
+// CAUTION: don't call if index >= stack.length
+int get_value_at(t_stack *stack, size_t index) {
+	t_node *curr_node;
+
+	curr_node = stack->bottom;
+	while (index--) {
+		curr_node = curr_node->next;
+	}
+	return (curr_node->value);
+}
+
 void print_stack(t_stack *stack, bool backward)
 {
 	t_node *curr_node;
 
+	printf("stack_%s ", stack->label);
 	if (!backward)
 	{
 		printf("---forward---\n");
