@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <sys/_types/_size_t.h>
 
 typedef struct s_node {
 	int value;
@@ -34,6 +35,7 @@ int pop_bottom(t_stack *stack);
 void rotate(t_stack *stack);
 void reverse_rotate(t_stack *stack);
 void send(t_stack *stack_src, t_stack *stack_dst);
+int get_value_at(t_stack *stack, size_t index);
 int *to_array(t_stack *stack);
 void print_stack(t_stack *stack, bool backward);
 void fill_stack(t_stack *stack, int *array, size_t size);
