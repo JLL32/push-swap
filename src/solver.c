@@ -35,7 +35,7 @@ void send_greatest(t_stack *stack_src, t_stack *stack_dst) {
 		i++;
 		curr_node = curr_node->next;
 	}
-	if (biggest.index >= (stack_src->length / 2))
+	if (biggest.index >= (stack_src->length / 2 - 1))
 		send_from_top(stack_src, stack_dst, biggest.value);
 	else
 		send_from_bottom(stack_src, stack_dst, biggest.value);
@@ -62,20 +62,13 @@ static void swapp(int *xp, int *yp)
 }
  
 void sort(int *arr, size_t size) {
-	size_t i, j, min_idx;
-
-	// One by one move boundary of unsorted subarray
-	for (i = 0; i < size - 1; i++)
-	{
-		// Find the minimum element in unsorted array
-		min_idx = i;
-		for (j = i + 1; j < size; j++)
-			if (arr[j] > arr[min_idx])
-				min_idx = j;
-
-		// Swap the found minimum element with the first element
-		swapp(&arr[i], &arr[min_idx]);
-	}
+  size_t i, j;
+    for (i = 0; i < size-1; i++)    
+     
+    // Last i elements are already in place
+    for (j = 0; j < size-i-1; j++)
+        if (arr[j] < arr[j+1])
+            swapp(&arr[j], &arr[j+1]);
 }
 
 void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk) {
@@ -113,7 +106,7 @@ void send_from_top(t_stack *stack_src, t_stack *stack_dst, int value) {
 	while (stack_src->top->value != value) 
 	{
 		if (strcmp(stack_src->label, "b") == 0 && (stack_src->top->prev) && stack_src->top->prev->value == value)
-					swap(stack_src);
+			swap(stack_src);
 		else
 			rotate(stack_src);
 	}
