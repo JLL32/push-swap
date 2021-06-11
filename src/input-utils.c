@@ -32,6 +32,8 @@ bool is_number(char *str)
 
 	str_l = strlen(str);
 	i = 0;
+	if (str[i]== '-')
+		i++;
 	while (i < str_l) {
 		if (str[i] < 48 || str[i] > 57)
 			return (false);
