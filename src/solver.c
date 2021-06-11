@@ -35,7 +35,7 @@ void send_greatest(t_stack *stack_src, t_stack *stack_dst) {
 		i++;
 		curr_node = curr_node->next;
 	}
-	if (biggest.index >= (stack_src->length / 2 - 1))
+	if (biggest.index >= (stack_src->length / 2))
 		send_from_top(stack_src, stack_dst, biggest.value);
 	else
 		send_from_bottom(stack_src, stack_dst, biggest.value);
