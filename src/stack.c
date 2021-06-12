@@ -194,6 +194,7 @@ int *to_array(t_stack *stack)
 	{
 		array[i] = curr_node->value;
 		curr_node = curr_node->next;
+		i++;
 	}
 
 	return (array);
@@ -201,13 +202,10 @@ int *to_array(t_stack *stack)
 
 // CAUTION: don't call if index >= stack.length
 int get_value_at(t_stack *stack, size_t index) {
-	t_node *curr_node;
-
-	curr_node = stack->bottom;
-	while (index--) {
-		curr_node = curr_node->next;
-	}
-	return (curr_node->value);
+	int *arr = to_array(stack);
+	int val = arr[index];
+	free(arr);
+	return (val);
 }
 
 void print_stack(t_stack *stack, bool backward)

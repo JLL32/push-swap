@@ -4,6 +4,17 @@
 #include <string.h>
 #include <strings.h>
 #include <sys/_types/_size_t.h>
+#include <unistd.h>
+
+/* static void print_slice(t_slice *slice) { */
+/* 	size_t i; */
+/* 	i = slice->start; */
+
+/* 	while (i < slice->end) { */
+/* 		printf("%d\n", slice->data[i]); */
+/* 		i++; */
+/* 	} */
+/* } */
 
 void solve(t_stack *stack_a, t_stack *stack_b, int *input) {
 	sort(input, stack_a->length);
@@ -74,13 +85,14 @@ void sort(int *arr, size_t size) {
 void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk) {
 	size_t length;
 	size_t i;
-	t_val_index hold_top;
-	t_val_index hold_bottom;
 
-	length = chunk->end;
+	length = chunk->end - chunk->start;
+	/* print_slice(chunk); */
 	while (length--)
 	{
 		i = stack_src->length;
+		t_val_index hold_top;
+		t_val_index hold_bottom;
 		while (i--)
 		{
 			hold_top = (t_val_index){get_value_at(stack_src, i), i};
@@ -91,10 +103,15 @@ void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk) {
 		while (i < stack_src->length)
 		{
 			hold_bottom = (t_val_index){get_value_at(stack_src, i), i};
+			if (hold_bottom.value == 287 && hold_bottom.index == 2) {
+				printf("");
+			}
 			if (slice_includes(chunk, hold_bottom.value))
 				break ;
 			i++;
 		}
+		/* printf("hold_bottom: %d, %lu\n", hold_bottom.value , hold_bottom.index); */
+		/* printf("hold_top: %d, %lu\n", hold_top.value , hold_top.index); */
 		if ((stack_src->length - 1 - hold_top.index) <= hold_bottom.index)
 			send_from_top(stack_src, stack_dst, hold_top.value);
 		else
@@ -128,15 +145,6 @@ void send_from_bottom(t_stack *stack_src, t_stack *stack_dst, int value) {
 ** NOTE: don't forget to free t_slice
 */
 
-/* static void print_slice(t_slice *slice) { */
-/* 	size_t i; */
-/* 	i = slice->start; */
-
-/* 	while (i < slice->end) { */
-/* 		printf("%d\n", slice->data[i]); */
-/* 		i++; */
-/* 	} */
-/* } */
 
 bool slice_includes(t_slice *slice, int value) {
 	size_t i;
