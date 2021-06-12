@@ -46,7 +46,7 @@ void send_greatest(t_stack *stack_src, t_stack *stack_dst) {
 		i++;
 		curr_node = curr_node->next;
 	}
-	if (biggest.index >= (stack_src->length / 2))
+	if ((long)biggest.index >= ((long)stack_src->length / 2))
 		send_from_top(stack_src, stack_dst, biggest.value);
 	else
 		send_from_bottom(stack_src, stack_dst, biggest.value);
@@ -58,7 +58,7 @@ void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr) {
 	size_t chunk_l;
 
 	l =  stack_src->length;
-	chunk_l = stack_src->length <= 150 ? 15 : 39;
+	chunk_l = stack_src->length <= 150 ? 19 : 34;
 	while ((chunk = get_next_slice(sorted_arr, l, chunk_l))) {
 		push_chunk(stack_src, stack_dst, chunk);
 		free(chunk);
@@ -112,10 +112,13 @@ void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk) {
 		}
 		/* printf("hold_bottom: %d, %lu\n", hold_bottom.value , hold_bottom.index); */
 		/* printf("hold_top: %d, %lu\n", hold_top.value , hold_top.index); */
-		if ((stack_src->length - 1 - hold_top.index) <= hold_bottom.index)
+		/* if ((stack_src->length - 1 - hold_top.index) <= hold_bottom.index) */
+		if ((long)(stack_src->length - 1 - hold_top.index) - 2 <= (long)hold_bottom.index)
 			send_from_top(stack_src, stack_dst, hold_top.value);
 		else
 			send_from_bottom(stack_src, stack_dst, hold_bottom.value);
+		if (stack_dst->bottom->value > stack_dst->top->value)
+			rotate(stack_dst);
 	}
 }
 
