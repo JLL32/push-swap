@@ -22,6 +22,25 @@ void solve(t_stack *stack_a, t_stack *stack_b, int *input) {
 	send_all_greatest(stack_b, stack_a);
 }
 
+void sort_three(t_stack *stack) {
+	if (stack->top->value < stack->top->prev->value && stack->bottom->value < stack->top->value)
+		swap(stack);	
+	if (stack->top->value < stack->bottom->value && stack->top->value < stack->top->prev->value)
+	{
+		swap(stack);	
+		reverse_rotate(stack);
+	}
+	if (stack->bottom->value < stack->top->value && stack->top->value < stack->top->prev->value)
+		rotate(stack);
+	if (stack->top->prev->value < stack->bottom->value && stack->bottom->value < stack->top->value)
+	{
+		swap(stack);
+		rotate(stack);
+	}
+	if (stack->top->value < stack->bottom->value && stack->top->prev->value < stack->top->value)
+		reverse_rotate(stack);
+}
+
 void send_all_greatest(t_stack *stack_src, t_stack *stack_dst) {
 	while (stack_src->length) {
 		send_greatest(stack_src, stack_dst);
@@ -58,7 +77,7 @@ void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr) {
 	size_t chunk_l;
 
 	l =  stack_src->length;
-	chunk_l = stack_src->length <= 150 ? 19 : 34;
+	chunk_l = stack_src->length <= 150 ? 17 : 40;
 	while ((chunk = get_next_slice(sorted_arr, l, chunk_l))) {
 		push_chunk(stack_src, stack_dst, chunk);
 		free(chunk);
@@ -119,6 +138,8 @@ void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk) {
 			send_from_bottom(stack_src, stack_dst, hold_bottom.value);
 		if (stack_dst->bottom->value > stack_dst->top->value)
 			rotate(stack_dst);
+		/* if (stack_dst->length == 3) */
+		/* 	sort_three(stack_dst); */
 	}
 }
 
