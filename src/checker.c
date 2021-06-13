@@ -32,19 +32,6 @@ int execute_ops(char **ops, t_stack *stack_a, t_stack *stack_b)
     return 1;
 }
 
-bool is_sorted(t_stack *stack_a)
-{
-    t_node *curr_node = stack_a->bottom;
-    while (curr_node)
-    {
-        if (curr_node->next)
-            if (curr_node->value < curr_node->next->value)
-                return false;
-        curr_node = curr_node->next;
-    }
-    return true;
-}
-
 int main(int argc, char **argv)
 {
     char *line;

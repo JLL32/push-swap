@@ -201,7 +201,8 @@ int *to_array(t_stack *stack)
 }
 
 // CAUTION: don't call if index >= stack.length
-int get_value_at(t_stack *stack, size_t index) {
+int get_value_at(t_stack *stack, size_t index)
+{
 	int *arr = to_array(stack);
 	int val = arr[index];
 	free(arr);

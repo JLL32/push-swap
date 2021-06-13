@@ -79,3 +79,16 @@ int *input_from_arg(int argc, char **argv) {
 	reverse_arr(res, count);
 	return (res);
 }
+
+bool is_sorted(t_stack *stack_a)
+{
+    t_node *curr_node = stack_a->bottom;
+    while (curr_node)
+    {
+        if (curr_node->next)
+            if (curr_node->value < curr_node->next->value)
+                return false;
+        curr_node = curr_node->next;
+    }
+    return true;
+}

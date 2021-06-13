@@ -6,28 +6,48 @@
 #include <sys/_types/_size_t.h>
 #include <unistd.h>
 
-void print_slice(t_slice *slice) {
+void solve_three(t_stack *stack_a)
+{
+	while (!is_sorted(stack_a))
+	{
+		if (stack_a->bottom->value < get_value_at(stack_a, 1)
+			&& get_value_at(stack_a,1) > stack_a->top->value
+			&& stack_a->bottom->value < stack_a->top->value)
+			reverse_rotate(stack_a);
+		else if (stack_a->bottom->value > get_value_at(stack_a, 1)
+			&& get_value_at(stack_a, 1) < stack_a->top->value)
+			rotate(stack_a);
+		else
+			swap(stack_a);
+	}
+}
+
+void print_slice(t_slice *slice)
+{
 	size_t i;
 	i = slice->start;
 
-	while (i < slice->end) {
+	while (i < slice->end)
+	{
 		printf("%d\n", slice->data[i]);
 		i++;
 	}
 }
 
-void solve(t_stack *stack_a, t_stack *stack_b, int *input) {
+void solve(t_stack *stack_a, t_stack *stack_b, int *input)
+{
 	sort(input, stack_a->length);
 	push_chunks(stack_a, stack_b, input);
 	send_all_greatest(stack_b, stack_a);
 }
 
-void sort_three(t_stack *stack) {
+void sort_three(t_stack *stack)
+{
 	if (stack->top->value > stack->top->prev->value && stack->bottom->value > stack->top->value)
-		swap(stack);	
+		swap(stack);
 	else if (stack->top->value > stack->bottom->value && stack->top->value > stack->top->prev->value)
 	{
-		swap(stack);	
+		swap(stack);
 		reverse_rotate(stack);
 	}
 	else if (stack->bottom->value > stack->top->value && stack->top->value > stack->top->prev->value)
@@ -41,13 +61,16 @@ void sort_three(t_stack *stack) {
 		reverse_rotate(stack);
 }
 
-void send_all_greatest(t_stack *stack_src, t_stack *stack_dst) {
-	while (stack_src->length) {
+void send_all_greatest(t_stack *stack_src, t_stack *stack_dst)
+{
+	while (stack_src->length)
+	{
 		send_greatest(stack_src, stack_dst);
 	}
 }
 
-void send_greatest(t_stack *stack_src, t_stack *stack_dst) {
+void send_greatest(t_stack *stack_src, t_stack *stack_dst)
+{
 	t_val_index biggest;
 	t_node *curr_node;
 	size_t i;
@@ -71,14 +94,16 @@ void send_greatest(t_stack *stack_src, t_stack *stack_dst) {
 		send_from_bottom(stack_src, stack_dst, biggest.value);
 }
 
-void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr) {
+void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr)
+{
 	t_slice *chunk;
 	size_t l;
 	size_t chunk_l;
 
-	l =  stack_src->length;
+	l = stack_src->length;
 	chunk_l = stack_src->length <= 150 ? 21 : 40;
-	while ((chunk = get_next_slice(sorted_arr, l, chunk_l))) {
+	while ((chunk = get_next_slice(sorted_arr, l, chunk_l)))
+	{
 		push_chunk(stack_src, stack_dst, chunk);
 		free(chunk);
 	}
@@ -86,22 +111,24 @@ void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr) {
 
 static void swapp(int *xp, int *yp)
 {
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
-}
- 
-void sort(int *arr, size_t size) {
-  size_t i, j;
-    for (i = 0; i < size-1; i++)    
-     
-    // Last i elements are already in place
-    for (j = 0; j < size-i-1; j++)
-        if (arr[j] < arr[j+1])
-            swapp(&arr[j], &arr[j+1]);
+	int temp = *xp;
+	*xp = *yp;
+	*yp = temp;
 }
 
-void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk) {
+void sort(int *arr, size_t size)
+{
+	size_t i, j;
+	for (i = 0; i < size - 1; i++)
+
+		// Last i elements are already in place
+		for (j = 0; j < size - i - 1; j++)
+			if (arr[j] < arr[j + 1])
+				swapp(&arr[j], &arr[j + 1]);
+}
+
+void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk)
+{
 	t_val_index hold_top;
 	t_val_index hold_bottom;
 	size_t length;
@@ -115,17 +142,18 @@ void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk) {
 		{
 			hold_top = (t_val_index){get_value_at(stack_src, i), i};
 			if (slice_includes(chunk, hold_top.value))
-				break ;
+				break;
 		}
 		i = 0;
 		while (i < stack_src->length)
 		{
 			hold_bottom = (t_val_index){get_value_at(stack_src, i), i};
-			if (hold_bottom.value == 287 && hold_bottom.index == 2) {
+			if (hold_bottom.value == 287 && hold_bottom.index == 2)
+			{
 				printf("");
 			}
 			if (slice_includes(chunk, hold_bottom.value))
-				break ;
+				break;
 			i++;
 		}
 		if ((long)(stack_src->length - 1 - hold_top.index) - 2 <= (long)hold_bottom.index)
@@ -137,8 +165,9 @@ void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk) {
 	}
 }
 
-void send_from_top(t_stack *stack_src, t_stack *stack_dst, int value) {
-	while (stack_src->top->value != value) 
+void send_from_top(t_stack *stack_src, t_stack *stack_dst, int value)
+{
+	while (stack_src->top->value != value)
 	{
 		if (strcmp(stack_src->label, "b") == 0 && (stack_src->top->prev) && stack_src->top->prev->value == value)
 			swap(stack_src);
@@ -148,9 +177,10 @@ void send_from_top(t_stack *stack_src, t_stack *stack_dst, int value) {
 	send(stack_src, stack_dst);
 }
 
-void send_from_bottom(t_stack *stack_src, t_stack *stack_dst, int value) {
+void send_from_bottom(t_stack *stack_src, t_stack *stack_dst, int value)
+{
 	if (stack_src->top == NULL)
-		return ;
+		return;
 	while (stack_src->top->value != value)
 	{
 		reverse_rotate(stack_src);
@@ -163,20 +193,22 @@ void send_from_bottom(t_stack *stack_src, t_stack *stack_dst, int value) {
 ** NOTE: don't forget to free t_slice
 */
 
-
-bool slice_includes(t_slice *slice, int value) {
+bool slice_includes(t_slice *slice, int value)
+{
 	size_t i;
 	i = slice->start;
 
-	while (i < slice->end) {
+	while (i < slice->end)
+	{
 		if (slice->data[i] == value)
 			return (true);
 		i++;
 	}
 	return (false);
-} 
+}
 
-t_slice *get_next_slice(int *arr, size_t size, size_t max_chunk_size) {
+t_slice *get_next_slice(int *arr, size_t size, size_t max_chunk_size)
+{
 	t_slice *slice;
 	static size_t global_i;
 	size_t local_i;
@@ -186,11 +218,13 @@ t_slice *get_next_slice(int *arr, size_t size, size_t max_chunk_size) {
 	slice->start = global_i;
 	slice->end = global_i;
 	local_i = 0;
-	while (global_i < size) {
+	while (global_i < size)
+	{
 		slice->end++;
 		global_i++;
 		local_i++;
-		if (local_i == max_chunk_size || global_i == size) {
+		if (local_i == max_chunk_size || global_i == size)
+		{
 			return (slice);
 		}
 	}

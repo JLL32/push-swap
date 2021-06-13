@@ -25,3 +25,4 @@ void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr);
 void sort(int *arr, size_t size);
 bool slice_includes(t_slice *slice, int value);
 void sort_three(t_stack *stack);
+void solve_three(t_stack *stack_a);
