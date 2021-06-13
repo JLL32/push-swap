@@ -3,13 +3,15 @@
 #include <malloc/_malloc.h>
 #include <sys/_types/_size_t.h>
 
-typedef struct s_slice {
+typedef struct s_slice
+{
 	const int *data;
 	size_t start;
 	size_t end;
 } t_slice;
 
-typedef struct s__val_index {
+typedef struct s__val_index
+{
 	int value;
 	size_t index;
 } t_val_index;

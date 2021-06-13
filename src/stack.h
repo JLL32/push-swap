@@ -1,5 +1,5 @@
 #ifndef STACK_H
-# define STACK_H
+#define STACK_H
 #include <ctype.h>
 #include <malloc/_malloc.h>
 #include <stddef.h>
@@ -10,13 +10,15 @@
 #include <stdbool.h>
 #include <sys/_types/_size_t.h>
 
-typedef struct s_node {
+typedef struct s_node
+{
 	int value;
 	struct s_node *prev;
 	struct s_node *next;
 } t_node;
 
-typedef struct s_stack {
+typedef struct s_stack
+{
 	t_node *bottom;
 	t_node *top;
 	size_t length;

@@ -1,6 +1,7 @@
 #include "input-utils.h"
 
-void panic(char *msg) {
+void panic(char *msg)
+{
 	write(2, msg, strlen(msg));
 	exit(EXIT_FAILURE);
 }
@@ -12,7 +13,7 @@ void reverse_arr(int *arr, size_t size)
 	size_t end;
 
 	if (size < 2)
-		return ;
+		return;
 	start = 0;
 	end = size - 1;
 	while (start < end)
@@ -32,9 +33,10 @@ bool is_number(char *str)
 
 	str_l = strlen(str);
 	i = 0;
-	if (str[i]== '-')
+	if (str[i] == '-')
 		i++;
-	while (i < str_l) {
+	while (i < str_l)
+	{
 		if (str[i] < 48 || str[i] > 57)
 			return (false);
 		i++;
@@ -47,7 +49,8 @@ bool is_dup(int *arr, size_t size, int value)
 	size_t i;
 
 	i = 0;
-	while(i < size) {
+	while (i < size)
+	{
 		if (value == arr[i])
 			return (true);
 		i++;
@@ -55,7 +58,8 @@ bool is_dup(int *arr, size_t size, int value)
 	return (false);
 }
 
-int *input_from_arg(int argc, char **argv) {
+int *input_from_arg(int argc, char **argv)
+{
 	int *res;
 	size_t i;
 	size_t count;
@@ -82,13 +86,13 @@ int *input_from_arg(int argc, char **argv) {
 
 bool is_sorted(t_stack *stack_a)
 {
-    t_node *curr_node = stack_a->bottom;
-    while (curr_node)
-    {
-        if (curr_node->next)
-            if (curr_node->value < curr_node->next->value)
-                return false;
-        curr_node = curr_node->next;
-    }
-    return true;
+	t_node *curr_node = stack_a->bottom;
+	while (curr_node)
+	{
+		if (curr_node->next)
+			if (curr_node->value < curr_node->next->value)
+				return false;
+		curr_node = curr_node->next;
+	}
+	return true;
 }

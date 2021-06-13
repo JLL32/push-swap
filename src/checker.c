@@ -39,8 +39,8 @@ int main(int argc, char **argv)
     int i;
 
     i = 0;
-	// you might ask why i moved the statement below to the top
-	// try to figure it out on your own ;)
+    // you might ask why i moved the statement below to the top
+    // try to figure it out on your own ;)
     int *input = input_from_arg(argc - 1, argv);
     t_stack *stack_a = new_stack("a");
     t_stack *stack_b = new_stack("b");
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
     {
         ops[i] = line;
         i++;
-        ops = realloc(ops, i*sizeof(*ops) + sizeof(*ops));
+        ops = realloc(ops, i * sizeof(*ops) + sizeof(*ops));
     }
     ops[i] = NULL;
     free(line);
