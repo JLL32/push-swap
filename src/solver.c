@@ -15,7 +15,8 @@ void solve_three(t_stack *stack_a)
 			stack_a->bottom->value < stack_a->top->value)
 			reverse_rotate(stack_a);
 		else if (stack_a->bottom->value > get_value_at(stack_a, 1) &&
-				 get_value_at(stack_a, 1) < stack_a->top->value)
+				 get_value_at(stack_a, 1) < stack_a->top->value &&
+				 stack_a->top->value > stack_a->bottom->value)
 			rotate(stack_a);
 		else
 			swap(stack_a);

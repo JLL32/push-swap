@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 		solve_three(stack_a);
 	else
 		solve(stack_a, stack_b, input);
-	print_stack(stack_a, false);
+	print_stack(stack_a, true);
 	//print_stack(stack_a, true);
 	// print_stack(stack_b, true);
 	//sort(input, argc-1);
