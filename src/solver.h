@@ -29,3 +29,4 @@ bool slice_includes(t_slice *slice, int value);
 void sort_three(t_stack *stack);
 void solve_three(t_stack *stack_a);
 void solve_five(t_stack *stack_a, t_stack *stack_b);
+void send_smallest(t_stack *stack_src, t_stack *stack_dst);

@@ -25,8 +25,8 @@ void solve_three(t_stack *stack_a)
 
 void solve_five(t_stack *stack_a, t_stack *stack_b)
 {
-	send_greatest(stack_a, stack_b);
-	send_greatest(stack_a, stack_b);
+	send_smallest(stack_a, stack_b);
+	send_smallest(stack_a, stack_b);
 	solve_three(stack_a);
 	send(stack_b, stack_a);
 	send(stack_b, stack_a);
@@ -102,6 +102,31 @@ void send_greatest(t_stack *stack_src, t_stack *stack_dst)
 		send_from_top(stack_src, stack_dst, biggest.value);
 	else
 		send_from_bottom(stack_src, stack_dst, biggest.value);
+}
+
+void send_smallest(t_stack *stack_src, t_stack *stack_dst)
+{
+	t_val_index smallest;
+	t_node *curr_node;
+	size_t i;
+
+	smallest = (t_val_index){INT32_MAX, 0};
+	curr_node = stack_src->bottom;
+	i = 0;
+	while (curr_node)
+	{
+		if (curr_node->value < smallest.value)
+		{
+			smallest.value = curr_node->value;
+			smallest.index = i;
+		}
+		i++;
+		curr_node = curr_node->next;
+	}
+	if ((double)smallest.index >= ((double)stack_src->length / 2))
+		send_from_top(stack_src, stack_dst, smallest.value);
+	else
+		send_from_bottom(stack_src, stack_dst, smallest.value);
 }
 
 void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr)
