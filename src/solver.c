@@ -23,6 +23,15 @@ void solve_three(t_stack *stack_a)
 	}
 }
 
+void solve_five(t_stack *stack_a, t_stack *stack_b)
+{
+	send_greatest(stack_a, stack_b);
+	send_greatest(stack_a, stack_b);
+	solve_three(stack_a);
+	send(stack_b, stack_a);
+	send(stack_b, stack_a);
+}
+
 void print_slice(t_slice *slice)
 {
 	size_t i;
