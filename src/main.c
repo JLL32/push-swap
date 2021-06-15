@@ -9,7 +9,6 @@ void print_array(int arr[], int size)
 		printf("%d\n", arr[i]);
 }
 
-// TODO: check if sorted first
 int main(int argc, char **argv)
 {
 	int *input;
@@ -20,17 +19,15 @@ int main(int argc, char **argv)
 	stack_a = new_stack("a");
 	stack_b = new_stack("b");
 	fill_stack(stack_a, input, argc - 1);
-	if (stack_a->length == 3)
-		solve_three(stack_a);
-	else if (stack_a->length == 5)
-		solve_five(stack_a, stack_b);
-	else
-		solve(stack_a, stack_b, input);
-	print_stack(stack_a, false);
-	//print_stack(stack_a, true);
-	// print_stack(stack_b, true);
-	//sort(input, argc-1);
-	//printArray(input, argc-1);
+	if (is_sorted(stack_a) == false)
+	{
+		if (stack_a->length == 3)
+			solve_three(stack_a);
+		else if (stack_a->length == 5)
+			solve_five(stack_a, stack_b);
+		else
+			solve(stack_a, stack_b, input);
+	}
 	delete_stack(stack_a);
 	delete_stack(stack_b);
 	free(input);
