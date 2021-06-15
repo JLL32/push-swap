@@ -51,26 +51,6 @@ void solve(t_stack *stack_a, t_stack *stack_b, int *input)
 	send_all_greatest(stack_b, stack_a);
 }
 
-void sort_three(t_stack *stack)
-{
-	if (stack->top->value > stack->top->prev->value && stack->bottom->value > stack->top->value)
-		swap(stack);
-	else if (stack->top->value > stack->bottom->value && stack->top->value > stack->top->prev->value)
-	{
-		swap(stack);
-		reverse_rotate(stack);
-	}
-	else if (stack->bottom->value > stack->top->value && stack->top->value > stack->top->prev->value)
-		rotate(stack);
-	else if (stack->top->prev->value > stack->bottom->value && stack->bottom->value > stack->top->value)
-	{
-		swap(stack);
-		rotate(stack);
-	}
-	else if (stack->top->value > stack->bottom->value && stack->top->prev->value > stack->top->value)
-		reverse_rotate(stack);
-}
-
 void send_all_greatest(t_stack *stack_src, t_stack *stack_dst)
 {
 	while (stack_src->length)
