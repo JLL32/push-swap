@@ -1,10 +1,21 @@
 #include "solver.h"
 #include "stack.h"
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
 #include <sys/_types/_size_t.h>
 #include <unistd.h>
+
+int comparer_greatest(int a, int b)
+{
+	return (a > b);
+}
+
+int comparer_smallest(int a, int b)
+{
+	return (b > a);
+}
 
 void solve_three(t_stack *stack_a)
 {
@@ -25,8 +36,8 @@ void solve_three(t_stack *stack_a)
 
 void solve_five(t_stack *stack_a, t_stack *stack_b)
 {
-	send_smallest(stack_a, stack_b);
-	send_smallest(stack_a, stack_b);
+	send_extrema(stack_a, stack_b, comparer_smallest, INT32_MAX);
+	send_extrema(stack_a, stack_b, comparer_smallest, INT32_MAX);
 	solve_three(stack_a);
 	send(stack_b, stack_a);
 	send(stack_b, stack_a);
@@ -51,62 +62,38 @@ void solve(t_stack *stack_a, t_stack *stack_b, int *input)
 	send_all_greatest(stack_b, stack_a);
 }
 
+void send_extrema(t_stack *stack_src, t_stack *stack_dst,
+int comparer(int a, int b), int extrema)
+{
+	t_val_index holder;
+	t_node *curr_node;
+	size_t i;
+
+	holder = (t_val_index){extrema, 0};
+	curr_node = stack_src->bottom;
+	i = 0;
+	while (curr_node)
+	{
+		if (comparer(curr_node->value, holder.value))
+		{
+			holder.value = curr_node->value;
+			holder.index = i;
+		}
+		i++;
+		curr_node = curr_node->next;
+	}
+	if ((double)holder.index >= ((double)stack_src->length / 2))
+		send_from_top(stack_src, stack_dst, holder.value);
+	else
+		send_from_bottom(stack_src, stack_dst, holder.value);
+}
+
 void send_all_greatest(t_stack *stack_src, t_stack *stack_dst)
 {
 	while (stack_src->length)
 	{
-		send_greatest(stack_src, stack_dst);
+		send_extrema(stack_src, stack_dst, comparer_greatest, INT32_MIN);
 	}
-}
-
-void send_greatest(t_stack *stack_src, t_stack *stack_dst)
-{
-	t_val_index biggest;
-	t_node *curr_node;
-	size_t i;
-
-	biggest = (t_val_index){INT32_MIN, 0};
-	curr_node = stack_src->bottom;
-	i = 0;
-	while (curr_node)
-	{
-		if (curr_node->value > biggest.value)
-		{
-			biggest.value = curr_node->value;
-			biggest.index = i;
-		}
-		i++;
-		curr_node = curr_node->next;
-	}
-	if ((double)biggest.index >= ((double)stack_src->length / 2))
-		send_from_top(stack_src, stack_dst, biggest.value);
-	else
-		send_from_bottom(stack_src, stack_dst, biggest.value);
-}
-
-void send_smallest(t_stack *stack_src, t_stack *stack_dst)
-{
-	t_val_index smallest;
-	t_node *curr_node;
-	size_t i;
-
-	smallest = (t_val_index){INT32_MAX, 0};
-	curr_node = stack_src->bottom;
-	i = 0;
-	while (curr_node)
-	{
-		if (curr_node->value < smallest.value)
-		{
-			smallest.value = curr_node->value;
-			smallest.index = i;
-		}
-		i++;
-		curr_node = curr_node->next;
-	}
-	if ((double)smallest.index >= ((double)stack_src->length / 2))
-		send_from_top(stack_src, stack_dst, smallest.value);
-	else
-		send_from_bottom(stack_src, stack_dst, smallest.value);
 }
 
 void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr)
