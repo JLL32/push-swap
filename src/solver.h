@@ -19,7 +19,8 @@ typedef struct s__val_index
 void solve(t_stack *stack_a, t_stack *stack_b, int *input);
 void send_from_top(t_stack *stack_src, t_stack *stack_dst, int value);
 void send_from_bottom(t_stack *stack_src, t_stack *stack_dst, int value);
-void send_greatest(t_stack *stack_src, t_stack *stack_dst);
+void send_extrema(t_stack *stack_src, t_stack *stack_dst,
+int comparer(int a, int b), int extrema);
 void send_all_greatest(t_stack *stack_src, t_stack *stack_dst);
 t_slice *get_next_slice(int *arr, size_t size, size_t max_chunk_size);
 void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk);
@@ -29,4 +30,3 @@ bool slice_includes(t_slice *slice, int value);
 void sort_three(t_stack *stack);
 void solve_three(t_stack *stack_a);
 void solve_five(t_stack *stack_a, t_stack *stack_b);
-void send_smallest(t_stack *stack_src, t_stack *stack_dst);
