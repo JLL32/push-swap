@@ -1,5 +1,4 @@
 #include "solver.h"
-#include "stack.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -43,17 +42,6 @@ void solve_five(t_stack *stack_a, t_stack *stack_b)
 	send(stack_b, stack_a);
 }
 
-void print_slice(t_slice *slice)
-{
-	size_t i;
-	i = slice->start;
-
-	while (i < slice->end)
-	{
-		printf("%d\n", slice->data[i]);
-		i++;
-	}
-}
 
 void solve(t_stack *stack_a, t_stack *stack_b, int *input)
 {
@@ -188,48 +176,4 @@ void send_from_bottom(t_stack *stack_src, t_stack *stack_dst, int value)
 		reverse_rotate(stack_src);
 	}
 	send(stack_src, stack_dst);
-}
-
-/*
-** NOTE: t_slice.end is exclusive
-** NOTE: don't forget to free t_slice
-*/
-
-bool slice_includes(t_slice *slice, int value)
-{
-	size_t i;
-	i = slice->start;
-
-	while (i < slice->end)
-	{
-		if (slice->data[i] == value)
-			return (true);
-		i++;
-	}
-	return (false);
-}
-
-t_slice *get_next_slice(int *arr, size_t size, size_t max_chunk_size)
-{
-	t_slice *slice;
-	static size_t global_i;
-	size_t local_i;
-
-	slice = malloc(sizeof(t_slice));
-	slice->data = arr;
-	slice->start = global_i;
-	slice->end = global_i;
-	local_i = 0;
-	while (global_i < size)
-	{
-		slice->end++;
-		global_i++;
-		local_i++;
-		if (local_i == max_chunk_size || global_i == size)
-		{
-			return (slice);
-		}
-	}
-	free(slice);
-	return (NULL);
 }

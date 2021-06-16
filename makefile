@@ -2,7 +2,8 @@ CC=gcc
 SRC=src/main.c\
 	src/input-utils.c\
 	src/solver.c\
-	src/stack.c
+	src/stack.c\
+	src/slice.c
 CFLAGS=-Wall -Wextra -Werror
 DFLAGS=-g -fsanitize=address
 NAME=push_swap
