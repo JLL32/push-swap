@@ -42,4 +42,5 @@ int *to_array(t_stack *stack);
 void print_stack(t_stack *stack, bool backward);
 void fill_stack(t_stack *stack, int *array, size_t size);
 void swap(t_stack *stack);
+bool is_sorted(t_stack *stack_a);
 #endif
