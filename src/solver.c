@@ -45,7 +45,7 @@ void solve_five(t_stack *stack_a, t_stack *stack_b)
 
 void solve(t_stack *stack_a, t_stack *stack_b, int *input)
 {
-	sort(input, stack_a->length);
+	sort_arr(input, stack_a->length);
 	push_chunks(stack_a, stack_b, input);
 	send_all_greatest(stack_b, stack_a);
 }
@@ -97,24 +97,6 @@ void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr)
 		push_chunk(stack_src, stack_dst, chunk);
 		free(chunk);
 	}
-}
-
-static void swapp(int *xp, int *yp)
-{
-	int temp = *xp;
-	*xp = *yp;
-	*yp = temp;
-}
-
-void sort(int *arr, size_t size)
-{
-	size_t i, j;
-	for (i = 0; i < size - 1; i++)
-
-		// Last i elements are already in place
-		for (j = 0; j < size - i - 1; j++)
-			if (arr[j] < arr[j + 1])
-				swapp(&arr[j], &arr[j + 1]);
 }
 
 void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk)

@@ -6,7 +6,28 @@ void panic(char *msg)
 	exit(EXIT_FAILURE);
 }
 
-void reverse_arr(int *arr, size_t size)
+static void swap(int *xp, int *yp)
+{
+	int temp = *xp;
+	*xp = *yp;
+	*yp = temp;
+}
+
+static bool is_dup(int *arr, size_t size, int value)
+{
+	size_t i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (value == arr[i])
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+static void reverse_arr(int *arr, size_t size)
 {
 	size_t start;
 	int temp;
@@ -26,7 +47,7 @@ void reverse_arr(int *arr, size_t size)
 	}
 }
 
-bool is_number(char *str)
+static bool is_number(char *str)
 {
 	size_t i;
 	size_t str_l;
@@ -44,19 +65,6 @@ bool is_number(char *str)
 	return (true);
 }
 
-bool is_dup(int *arr, size_t size, int value)
-{
-	size_t i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (value == arr[i])
-			return (true);
-		i++;
-	}
-	return (false);
-}
 
 int *input_from_arg(int argc, char **argv)
 {
@@ -66,7 +74,6 @@ int *input_from_arg(int argc, char **argv)
 
 	count = argc - 1;
 	argv++;
-
 	res = malloc(sizeof(int) * count);
 	i = 0;
 	while (i < count)
@@ -84,15 +91,21 @@ int *input_from_arg(int argc, char **argv)
 	return (res);
 }
 
-bool is_sorted(t_stack *stack_a)
+void sort_arr(int *arr, size_t size)
 {
-	t_node *curr_node = stack_a->bottom;
-	while (curr_node)
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (i < size - 1)
 	{
-		if (curr_node->next)
-			if (curr_node->value < curr_node->next->value)
-				return false;
-		curr_node = curr_node->next;
+		j = 0;
+		while (j < size - i - 1)
+		{
+			if (arr[j] < arr[j + 1])
+				swap(&arr[j], &arr[j + 1]);
+			j++;
+		}
+		i++;
 	}
-	return true;
 }

@@ -2,13 +2,6 @@
 #include "solver.h"
 #include "input-utils.h"
 
-void print_array(int arr[], int size)
-{
-	int i;
-	for (i = 0; i < size; i++)
-		printf("%d\n", arr[i]);
-}
-
 int main(int argc, char **argv)
 {
 	int *input;
