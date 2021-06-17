@@ -25,23 +25,10 @@ int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
 	return (1);
 }
 
-void	free_stack(t_stack *stack)
-{
-	t_node	*curr_node;
-
-	curr_node = stack->bottom;
-	while (curr_node)
-	{
-		free(curr_node);
-		curr_node = curr_node->next;
-	}
-	free(stack);
-}
-
 void	free_memory(t_stack *stack_a, t_stack *stack_b, char *op)
 {
-	free_stack(stack_a);
-	free_stack(stack_b);
+	delete_stack(stack_a);
+	delete_stack(stack_b);
 	free(op);
 }
 
@@ -50,10 +37,11 @@ int	main(int argc, char **argv)
 	char	*line;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	int		*input;
 	int		i;
 
 	i = 0;
-	int *input = input_from_arg(argc, argv);
+	input = input_from_arg(argc, argv);
 	stack_a = new_stack("a");
 	stack_b = new_stack("b");
 	fill_stack(stack_a, input, argc - 1);
