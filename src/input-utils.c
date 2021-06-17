@@ -1,18 +1,5 @@
 #include "input-utils.h"
 
-void panic(char *msg)
-{
-	write(2, msg, strlen(msg));
-	exit(EXIT_FAILURE);
-}
-
-static void swap(int *xp, int *yp)
-{
-	int temp = *xp;
-	*xp = *yp;
-	*yp = temp;
-}
-
 static bool is_dup(int *arr, size_t size, int value)
 {
 	size_t i;
@@ -65,7 +52,6 @@ static bool is_number(char *str)
 	return (true);
 }
 
-
 int *input_from_arg(int argc, char **argv)
 {
 	int *res;
@@ -81,7 +67,8 @@ int *input_from_arg(int argc, char **argv)
 		if (!is_number(*argv) || is_dup(res, i, atoi(*argv)))
 		{
 			free(res);
-			panic("Error\n");
+			write(2, "Error\n", strlen("Error\n"));
+			exit(EXIT_FAILURE);
 		}
 		res[i] = atoi(*argv);
 		i++;
@@ -95,6 +82,7 @@ void sort_arr(int *arr, size_t size)
 {
 	size_t i;
 	size_t j;
+	int		temp;
 
 	i = 0;
 	while (i < size - 1)
@@ -103,7 +91,11 @@ void sort_arr(int *arr, size_t size)
 		while (j < size - i - 1)
 		{
 			if (arr[j] < arr[j + 1])
-				swap(&arr[j], &arr[j + 1]);
+			{
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
 			j++;
 		}
 		i++;
