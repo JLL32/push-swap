@@ -13,6 +13,7 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # define MAXINT 2147483647
+# define BUFFER_SIZE 32
 # include <stdlib.h>
 # include <unistd.h>
 

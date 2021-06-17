@@ -69,9 +69,10 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 0;
+	int *input = input_from_arg(argc - 1, argv);
 	stack_a = new_stack("a");
 	stack_b = new_stack("b");
-	fill_stack(stack_a, input_from_arg(argc - 1, argv), argc - 1);
+	fill_stack(stack_a, input, argc - 1);
 	print_stack(stack_a, false);
 	ops = malloc(sizeof(*ops));
 	while (get_next_line(0, &line) > 0)
