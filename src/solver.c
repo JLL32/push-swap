@@ -35,6 +35,6 @@ void solve_five(t_stack *stack_a, t_stack *stack_b)
 void solve(t_stack *stack_a, t_stack *stack_b, int *input)
 {
 	sort_arr(input, stack_a->length);
-	push_chunks(stack_a, stack_b, input);
+	push_slices(stack_a, stack_b, input);
 	send_all_greatest(stack_b, stack_a);
 }

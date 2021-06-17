@@ -18,8 +18,8 @@ void send_from_bottom(t_stack *stack_src, t_stack *stack_dst, int value);
 void send_extrema(t_stack *stack_src, t_stack *stack_dst,
 int comparer(int a, int b), int extrema);
 void send_all_greatest(t_stack *stack_src, t_stack *stack_dst);
-void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk);
-void push_chunks(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr);
+void push_slice(t_stack *stack_src, t_stack *stack_dst, t_slice *slice);
+void push_slices(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr);
 void sort(int *arr, size_t size);
 void sort_three(t_stack *stack);
 void solve_three(t_stack *stack_a);

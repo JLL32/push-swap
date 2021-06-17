@@ -3,7 +3,7 @@ SRC=src/main.c\
 	src/input-utils.c\
 	src/solver.c\
 	src/solver-utils.c\
-	src/solver-chunks.c\
+	src/solver-slicing.c\
 	src/stack.c\
 	src/stack-utils.c\
 	src/stack-operations.c\
