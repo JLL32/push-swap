@@ -3,12 +3,18 @@ SRC=src/main.c\
 	src/input-utils.c\
 	src/solver.c\
 	src/stack.c\
+	src/stack-utils.c\
+	src/stack-operations.c\
+	src/stack-instructions.c\
 	src/slice.c
 
 CHECKER=checker
 
 CHECKER_SRC=src/input-utils.c\
 			src/stack.c\
+			src/stack-utils.c\
+			src/stack-operations.c\
+			src/stack-instructions.c\
 			src/get_next_line/get_next_line.c\
 			src/get_next_line/get_next_line_utils.c\
 			src/checker.c
