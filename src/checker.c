@@ -69,7 +69,7 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 0;
-	int *input = input_from_arg(argc - 1, argv);
+	int *input = input_from_arg(argc, argv);
 	stack_a = new_stack("a");
 	stack_b = new_stack("b");
 	fill_stack(stack_a, input, argc - 1);
@@ -88,6 +88,7 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		free_memory(stack_a, stack_b, ops);
 	}
+	free_memory(stack_a, stack_b, ops);
 	if (is_sorted(stack_a))
 		write(1, "OK", 2);
 	else
