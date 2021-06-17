@@ -24,4 +24,6 @@ void sort(int *arr, size_t size);
 void sort_three(t_stack *stack);
 void solve_three(t_stack *stack_a);
 void solve_five(t_stack *stack_a, t_stack *stack_b);
+int comparer_greatest(int a, int b);
+int comparer_smallest(int a, int b);
 #endif
