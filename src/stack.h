@@ -34,13 +34,13 @@ void append(t_stack *stack, int value);
 void prepend(t_stack *stack, int value);
 int pop_top(t_stack *stack);
 int pop_bottom(t_stack *stack);
-void rotate(t_stack *stack);
-void reverse_rotate(t_stack *stack);
-void send(t_stack *stack_src, t_stack *stack_dst);
+void rotate(t_stack *stack, bool display);
+void reverse_rotate(t_stack *stack, bool display);
+void send(t_stack *stack_src, t_stack *stack_dst, bool display);
 int get_value_at(t_stack *stack, size_t index);
 int *to_array(t_stack *stack);
 void print_stack(t_stack *stack, bool backward);
 void fill_stack(t_stack *stack, int *array, size_t size);
-void swap(t_stack *stack);
+void swap(t_stack *stack, bool display);
 bool is_sorted(t_stack *stack_a);
 #endif

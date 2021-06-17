@@ -23,13 +23,13 @@ void solve_three(t_stack *stack_a)
 		if (stack_a->bottom->value < get_value_at(stack_a, 1) &&
 			get_value_at(stack_a, 1) > stack_a->top->value &&
 			stack_a->bottom->value < stack_a->top->value)
-			reverse_rotate(stack_a);
+			reverse_rotate(stack_a, true);
 		else if (stack_a->bottom->value > get_value_at(stack_a, 1) &&
 				 get_value_at(stack_a, 1) < stack_a->top->value &&
 				 stack_a->top->value > stack_a->bottom->value)
-			rotate(stack_a);
+			rotate(stack_a, true);
 		else
-			swap(stack_a);
+			swap(stack_a, true);
 	}
 }
 
@@ -38,8 +38,8 @@ void solve_five(t_stack *stack_a, t_stack *stack_b)
 	send_extrema(stack_a, stack_b, comparer_smallest, INT32_MAX);
 	send_extrema(stack_a, stack_b, comparer_smallest, INT32_MAX);
 	solve_three(stack_a);
-	send(stack_b, stack_a);
-	send(stack_b, stack_a);
+	send(stack_b, stack_a, true);
+	send(stack_b, stack_a, true);
 }
 
 
@@ -133,7 +133,7 @@ void push_chunk(t_stack *stack_src, t_stack *stack_dst, t_slice *chunk)
 		else
 			send_from_bottom(stack_src, stack_dst, hold_bottom.value);
 		if (stack_dst->bottom->value > stack_dst->top->value)
-			rotate(stack_dst);
+			rotate(stack_dst, true);
 	}
 }
 
@@ -142,11 +142,11 @@ void send_from_top(t_stack *stack_src, t_stack *stack_dst, int value)
 	while (stack_src->top->value != value)
 	{
 		if (strcmp(stack_src->label, "b") == 0 && (stack_src->top->prev) && stack_src->top->prev->value == value)
-			swap(stack_src);
+			swap(stack_src, true);
 		else
-			rotate(stack_src);
+			rotate(stack_src, true);
 	}
-	send(stack_src, stack_dst);
+	send(stack_src, stack_dst, true);
 }
 
 void send_from_bottom(t_stack *stack_src, t_stack *stack_dst, int value)
@@ -155,7 +155,7 @@ void send_from_bottom(t_stack *stack_src, t_stack *stack_dst, int value)
 		return;
 	while (stack_src->top->value != value)
 	{
-		reverse_rotate(stack_src);
+		reverse_rotate(stack_src, true);
 	}
-	send(stack_src, stack_dst);
+	send(stack_src, stack_dst, true);
 }

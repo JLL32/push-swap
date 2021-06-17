@@ -4,28 +4,24 @@
 
 int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
 {
-	int	i;
-
-	i = 0;
 	if (strcmp(op, "ra") == 0)
-		rotate(stack_a);
+		rotate(stack_a, false);
 	else if (strcmp(op, "rb") == 0)
-		rotate(stack_b);
+		rotate(stack_b, false);
 	else if (strcmp(op, "rra") == 0)
-		reverse_rotate(stack_a);
+		reverse_rotate(stack_a, false);
 	else if (strcmp(op, "rrb") == 0)
-		reverse_rotate(stack_b);
+		reverse_rotate(stack_b, false);
 	else if (strcmp(op, "sa") == 0)
-		swap(stack_a);
+		swap(stack_a, false);
 	else if (strcmp(op, "sb") == 0)
-		swap(stack_b);
+		swap(stack_b, false);
 	else if (strcmp(op, "pa") == 0)
-		send(stack_b, stack_a);
+		send(stack_b, stack_a, false);
 	else if (strcmp(op, "pb") == 0)
-		send(stack_a, stack_b);
+		send(stack_a, stack_b, false);
 	else
 		return (-1);
-	i++;
 	return (1);
 }
 

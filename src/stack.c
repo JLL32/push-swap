@@ -46,11 +46,12 @@ void delete_stack(t_stack *stack)
 	free(stack);
 }
 
-void swap(t_stack *stack)
+void swap(t_stack *stack, bool display)
 {
 	int tmp;
 
-	printf("s%s\n", stack->label);
+	if (display)
+		printf("s%s\n", stack->label);
 	if (stack->length > 1)
 	{
 		tmp = stack->top->value;
@@ -156,27 +157,30 @@ void fill_stack(t_stack *stack, int *array, size_t size)
 	}
 }
 
-void rotate(t_stack *stack)
+void rotate(t_stack *stack, bool display)
 {
-	printf("r%s\n", stack->label);
+	if (display)
+		printf("r%s\n", stack->label);
 	if (stack->length > 1)
 	{
 		prepend(stack, pop_top(stack));
 	}
 }
 
-void reverse_rotate(t_stack *stack)
+void reverse_rotate(t_stack *stack, bool display)
 {
-	printf("rr%s\n", stack->label);
+	if (display)
+		printf("rr%s\n", stack->label);
 	if (stack->length > 1)
 	{
 		append(stack, pop_bottom(stack));
 	}
 }
 
-void send(t_stack *stack_src, t_stack *stack_dst)
+void send(t_stack *stack_src, t_stack *stack_dst, bool display)
 {
-	printf("p%s\n", stack_dst->label);
+	if (display)
+		printf("p%s\n", stack_dst->label);
 	append(stack_dst, pop_top(stack_src));
 }
 
