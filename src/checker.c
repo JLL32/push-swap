@@ -2,7 +2,7 @@
 #include "get_next_line/get_next_line.h"
 #include "input-utils.h"
 
-int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
+static int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
 {
 	if (strcmp(op, "ra") == 0)
 		rotate(stack_a, false);
@@ -25,7 +25,7 @@ int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
 	return (1);
 }
 
-void	free_memory(t_stack *stack_a, t_stack *stack_b, char *op)
+static void	free_memory(t_stack *stack_a, t_stack *stack_b, char *op)
 {
 	delete_stack(stack_a);
 	delete_stack(stack_b);
@@ -38,9 +38,7 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	int		*input;
-	int		i;
 
-	i = 0;
 	input = input_from_arg(argc, argv);
 	stack_a = new_stack("a");
 	stack_b = new_stack("b");
@@ -52,7 +50,6 @@ int	main(int argc, char **argv)
 			write(2, "Error\n", 6);
 			free_memory(stack_a, stack_b, line);
 		}
-		i++;
 	}
 	free_memory(stack_a, stack_b, line);
 	if (is_sorted(stack_a))
