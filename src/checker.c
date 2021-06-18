@@ -51,10 +51,10 @@ int	main(int argc, char **argv)
 			free_memory(stack_a, stack_b, line);
 		}
 	}
-	free_memory(stack_a, stack_b, line);
 	if (is_sorted(stack_a))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	free_memory(stack_a, stack_b, line);
 	return (0);
 }
