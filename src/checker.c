@@ -1,24 +1,25 @@
 #include "stack.h"
 #include "get_next_line/get_next_line.h"
 #include "input.h"
+#include "utils.h"
 
 static int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
 {
-	if (strcmp(op, "ra") == 0)
+	if (ft_strncmp(op, "ra", ft_strlen(op)) == 0)
 		rotate(stack_a, false);
-	else if (strcmp(op, "rb") == 0)
+	else if (ft_strncmp(op, "rb", ft_strlen(op)) == 0)
 		rotate(stack_b, false);
-	else if (strcmp(op, "rra") == 0)
+	else if (ft_strncmp(op, "rra", ft_strlen(op)) == 0)
 		reverse_rotate(stack_a, false);
-	else if (strcmp(op, "rrb") == 0)
+	else if (ft_strncmp(op, "rrb", ft_strlen(op)) == 0)
 		reverse_rotate(stack_b, false);
-	else if (strcmp(op, "sa") == 0)
+	else if (ft_strncmp(op, "sa", ft_strlen(op)) == 0)
 		swap(stack_a, false);
-	else if (strcmp(op, "sb") == 0)
+	else if (ft_strncmp(op, "sb", ft_strlen(op)) == 0)
 		swap(stack_b, false);
-	else if (strcmp(op, "pa") == 0)
+	else if (ft_strncmp(op, "pa", ft_strlen(op)) == 0)
 		send(stack_b, stack_a, false);
-	else if (strcmp(op, "pb") == 0)
+	else if (ft_strncmp(op, "pb", ft_strlen(op)) == 0)
 		send(stack_a, stack_b, false);
 	else
 		return (-1);

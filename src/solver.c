@@ -1,10 +1,4 @@
 #include "solver.h"
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-#include <strings.h>
-#include <sys/_types/_size_t.h>
-#include <unistd.h>
 
 void	solve_three(t_stack *stack_a)
 {

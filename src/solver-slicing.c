@@ -1,7 +1,6 @@
 #include "slice.h"
 #include "solver.h"
 #include "stack.h"
-#include <sys/_types/_size_t.h>
 
 void	push_slices(t_stack *stack_src, t_stack *stack_dst, int *sorted_arr)
 {

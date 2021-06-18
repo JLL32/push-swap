@@ -3,8 +3,7 @@
 # include "input.h"
 # include "slice.h"
 # include "stack.h"
-# include <malloc/_malloc.h>
-# include <sys/_types/_size_t.h>
+# include <stdlib.h>
 
 typedef struct s__val_index
 {

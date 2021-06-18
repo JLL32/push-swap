@@ -1,4 +1,5 @@
 #include "input.h"
+#include "utils.h"
 
 static bool	is_dup(int *arr, size_t size, int value)
 {
@@ -39,7 +40,7 @@ static bool	is_number(char *str)
 	size_t	i;
 	size_t	str_l;
 
-	str_l = strlen(str);
+	str_l = ft_strlen(str);
 	i = 0;
 	if (str[i] == '-')
 		i++;
@@ -64,13 +65,13 @@ int	*input_from_arg(int argc, char **argv)
 	i = 0;
 	while (i < count)
 	{
-		if (!is_number(*argv) || is_dup(res, i, atoi(*argv)))
+		if (!is_number(*argv) || is_dup(res, i, ft_atoi(*argv)))
 		{
 			free(res);
-			write(2, "Error\n", strlen("Error\n"));
+			write(2, "Error\n", ft_strlen("Error\n"));
 			exit(EXIT_FAILURE);
 		}
-		res[i] = atoi(*argv);
+		res[i] = ft_atoi(*argv);
 		i++;
 		argv++;
 	}

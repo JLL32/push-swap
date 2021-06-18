@@ -1,4 +1,5 @@
 #include "solver.h"
+#include "utils.h"
 
 void	send_extrema(t_stack *stack_src,
 					t_stack *stack_dst,
@@ -45,7 +46,7 @@ void	send_from_top(t_stack *stack_src, t_stack *stack_dst, int value)
 {
 	while (stack_src->top->value != value)
 	{
-		if (strcmp(stack_src->label, "b") == 0
+		if (ft_strncmp(stack_src->label, "b", ft_strlen(stack_src->label)) == 0
 			&& (stack_src->top->prev)
 			&& stack_src->top->prev->value == value)
 			swap(stack_src, true);
