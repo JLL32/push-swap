@@ -29,21 +29,21 @@ NAME=push_swap
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CFLAGS) $(DFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 checker: $(CHECKER_SRC)
-	$(CC) $(CFLAGS) $(DFLAGS) $(CHECKER_SRC) -o $(CHECKER)
+	$(CC) $(CFLAGS) $(CHECKER_SRC) -o $(CHECKER)
 
 clean:
 	rm -rf $(NAME)
 
-fclean: clean
+fclean: clean checker
 
 re: clean all
 
 bonus: checker
 
-test: all
+test: all checker
 	@./push_swap $(TEST1) | ./checker $(TEST1)
 
 .PHONY: all clean fclean re test bonus
