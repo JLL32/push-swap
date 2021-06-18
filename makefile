@@ -28,16 +28,22 @@ TEST1=187 588 151 890 318 645 324 320 849 741 268 835 471 213 437 244 166 35 938
 #TEST1=781 44 853
 TEST2= 187 588 151 890 318 645 324 320 849 741 268 835 471 213 437 244 166 35 938 488 384 739 291 534 287 561 943 789 11 817 81 272 
 
-all: $(SRC)
+all: $(NAME)
+
+$(NAME): $(SRC)
 	$(CC) $(CFLAGS) $(DFLAGS) $(SRC) -o $(NAME)
 
-# test: all
-# 	./push_swap $(TEST1) | node ../Push_Swap.js/checker.js $(TEST1) > output2.txt
-test: all
-	./push_swap $(TEST1) | node ../Push_Swap.js/checker.js $(TEST1)
-
-checker:
-	$(CC) $(CFLAGS)  $(CHECKER_SRC) -o $(CHECKER)
+checker: $(CHECKER_SRC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(CHECKER_SRC) -o $(CHECKER)
 
 clean:
 	rm -rf $(NAME)
+
+fclean: clean
+
+re: clean all
+
+test: all
+	@./push_swap $(TEST1) | ./checker $(TEST1)
+
+.PHONY: all clean fclean re
