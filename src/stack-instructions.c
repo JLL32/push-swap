@@ -1,8 +1,8 @@
 #include "stack.h"
 
-void swap(t_stack *stack, bool display)
+void	swap(t_stack *stack, bool display)
 {
-	int tmp;
+	int	tmp;
 
 	if (stack->length > 1)
 	{
@@ -14,7 +14,7 @@ void swap(t_stack *stack, bool display)
 	}
 }
 
-void rotate(t_stack *stack, bool display)
+void	rotate(t_stack *stack, bool display)
 {
 	if (stack->length > 1)
 	{
@@ -24,7 +24,7 @@ void rotate(t_stack *stack, bool display)
 	}
 }
 
-void reverse_rotate(t_stack *stack, bool display)
+void	reverse_rotate(t_stack *stack, bool display)
 {
 	if (stack->length > 1)
 	{
@@ -34,7 +34,7 @@ void reverse_rotate(t_stack *stack, bool display)
 	}
 }
 
-void send(t_stack *stack_src, t_stack *stack_dst, bool display)
+void	send(t_stack *stack_src, t_stack *stack_dst, bool display)
 {
 	if (stack_src->length >= 1)
 	{

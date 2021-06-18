@@ -1,8 +1,8 @@
-#include "input-utils.h"
+#include "input.h"
 
-static bool is_dup(int *arr, size_t size, int value)
+static bool	is_dup(int *arr, size_t size, int value)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < size)
@@ -14,14 +14,14 @@ static bool is_dup(int *arr, size_t size, int value)
 	return (false);
 }
 
-static void reverse_arr(int *arr, size_t size)
+static void	reverse_arr(int *arr, size_t size)
 {
-	size_t start;
-	int temp;
-	size_t end;
+	size_t	start;
+	int		temp;
+	size_t	end;
 
 	if (size < 2)
-		return;
+		return ;
 	start = 0;
 	end = size - 1;
 	while (start < end)
@@ -34,10 +34,10 @@ static void reverse_arr(int *arr, size_t size)
 	}
 }
 
-static bool is_number(char *str)
+static bool	is_number(char *str)
 {
-	size_t i;
-	size_t str_l;
+	size_t	i;
+	size_t	str_l;
 
 	str_l = strlen(str);
 	i = 0;
@@ -52,11 +52,11 @@ static bool is_number(char *str)
 	return (true);
 }
 
-int *input_from_arg(int argc, char **argv)
+int	*input_from_arg(int argc, char **argv)
 {
-	int *res;
-	size_t i;
-	size_t count;
+	int		*res;
+	size_t	i;
+	size_t	count;
 
 	count = argc - 1;
 	argv++;
@@ -78,10 +78,10 @@ int *input_from_arg(int argc, char **argv)
 	return (res);
 }
 
-void sort_arr(int *arr, size_t size)
+void	sort_arr(int *arr, size_t size)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 	int		temp;
 
 	i = 0;

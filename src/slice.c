@@ -5,11 +5,11 @@
 ** NOTE: don't forget to free t_slice
 */
 
-t_slice *get_next_slice(int *arr, size_t size, size_t max_slice_size)
+t_slice	*get_next_slice(int *arr, size_t size, size_t max_slice_size)
 {
-	t_slice *slice;
-	static size_t global_i;
-	size_t local_i;
+	t_slice			*slice;
+	static size_t	global_i;
+	size_t			local_i;
 
 	slice = malloc(sizeof(t_slice));
 	slice->data = arr;
@@ -30,11 +30,11 @@ t_slice *get_next_slice(int *arr, size_t size, size_t max_slice_size)
 	return (NULL);
 }
 
-bool slice_includes(t_slice *slice, int value)
+bool	slice_includes(t_slice *slice, int value)
 {
-	size_t i;
-	i = slice->start;
+	size_t	i;
 
+	i = slice->start;
 	while (i < slice->end)
 	{
 		if (slice->data[i] == value)
@@ -44,11 +44,11 @@ bool slice_includes(t_slice *slice, int value)
 	return (false);
 }
 
-void print_slice(t_slice *slice)
+void	print_slice(t_slice *slice)
 {
-	size_t i;
-	i = slice->start;
+	size_t	i;
 
+	i = slice->start;
 	while (i < slice->end)
 	{
 		printf("%d\n", slice->data[i]);

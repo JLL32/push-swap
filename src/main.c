@@ -1,12 +1,12 @@
-#include "stack.h"
+#include "input.h"
 #include "solver.h"
-#include "input-utils.h"
+#include "stack.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int *input;
-	t_stack *stack_a;
-	t_stack *stack_b;
+	int		*input;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	input = input_from_arg(argc, argv);
 	stack_a = new_stack("a");

@@ -1,8 +1,10 @@
 #include "stack.h"
 
-void append(t_stack *stack, int value)
+void	append(t_stack *stack, int value)
 {
-	t_node *node = new_node(value);
+	t_node	*node;
+
+	node = new_node(value);
 	if (stack->bottom == NULL)
 	{
 		stack->bottom = node;
@@ -17,9 +19,11 @@ void append(t_stack *stack, int value)
 	stack->length++;
 }
 
-void prepend(t_stack *stack, int value)
+void	prepend(t_stack *stack, int value)
 {
-	t_node *node = new_node(value);
+	t_node	*node;
+
+	node = new_node(value);
 	if (stack->bottom == NULL)
 	{
 		stack->bottom = node;
@@ -34,17 +38,21 @@ void prepend(t_stack *stack, int value)
 	stack->length++;
 }
 
-// CAUTION: DO NOT CALL if length == 0
-int pop_top(t_stack *stack)
+/*
+** CAUTION: DO NOT CALL if length == 0
+*/
+
+int	pop_top(t_stack *stack)
 {
-	t_node *temp;
-	int val;
+	t_node	*temp;
+	int		val;
 
 	if (stack->length == 1)
 	{
 		val = stack->bottom->value;
 		temp = stack->bottom;
-		stack->bottom = stack->top = NULL;
+		stack->bottom = NULL;
+		stack->top = NULL;
 		free(temp);
 	}
 	else
@@ -56,21 +64,24 @@ int pop_top(t_stack *stack)
 		free(temp);
 	}
 	stack->length--;
-
 	return (val);
 }
 
-// CAUTION: DO NOT CALL if length == 0
-int pop_bottom(t_stack *stack)
+/*
+** CAUTION: DO NOT CALL if length == 0
+*/
+
+int	pop_bottom(t_stack *stack)
 {
-	t_node *temp;
-	int val;
+	t_node	*temp;
+	int		val;
 
 	val = stack->bottom->value;
 	if (stack->length == 1)
 	{
 		temp = stack->bottom;
-		stack->bottom = stack->top = NULL;
+		stack->bottom = NULL;
+		stack->top = NULL;
 		free(temp);
 	}
 	else

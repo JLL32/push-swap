@@ -1,6 +1,6 @@
 #include "stack.h"
 #include "get_next_line/get_next_line.h"
-#include "input-utils.h"
+#include "input.h"
 
 static int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
 {

@@ -1,6 +1,6 @@
 CC=gcc
 SRC=src/main.c\
-	src/input-utils.c\
+	src/input.c\
 	src/solver.c\
 	src/solver-utils.c\
 	src/solver-slicing.c\
@@ -12,7 +12,7 @@ SRC=src/main.c\
 
 CHECKER=checker
 
-CHECKER_SRC=src/input-utils.c\
+CHECKER_SRC=src/input.c\
 			src/stack.c\
 			src/stack-utils.c\
 			src/stack-operations.c\
