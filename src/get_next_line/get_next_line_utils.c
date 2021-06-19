@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-char		*ft_strcpy(char *dest, const char *src)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (*(src + i) != '\0')
@@ -26,9 +26,9 @@ char		*ft_strcpy(char *dest, const char *src)
 	return (dest);
 }
 
-char		*ft_strdup(char *str)
+char	*ft_strdup(char *str)
 {
-	char *dst;
+	char	*dst;
 
 	dst = malloc(ft_strlen(str) + 1);
 	if (dst)
@@ -36,7 +36,7 @@ char		*ft_strdup(char *str)
 	return (dst);
 }
 
-char		*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	int		i;
 	char	*ptr;
@@ -48,7 +48,7 @@ char		*ft_substr(char *s, unsigned int start, size_t len)
 	if (lens < start)
 		len = 0;
 	i = 0;
-	ptr = (char*)malloc(len + 1);
+	ptr = (char *)malloc(len + 1);
 	if (!ptr)
 		return (0);
 	while (i < (int)len && start < lens)
@@ -57,7 +57,7 @@ char		*ft_substr(char *s, unsigned int start, size_t len)
 	return (ptr);
 }
 
-void		*ft_char_calloc(size_t count)
+void	*ft_char_calloc(size_t count)
 {
 	void	*ptr;
 	int		i;
@@ -68,7 +68,7 @@ void		*ft_char_calloc(size_t count)
 	{
 		while ((int)(count) > i)
 		{
-			*(char*)(ptr + i) = 0;
+			*(char *)(ptr + i) = 0;
 			i++;
 		}
 		return (ptr);

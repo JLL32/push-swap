@@ -39,7 +39,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (ptr);
 }
 
-int		ft_check_new_line(char *line)
+int	ft_check_new_line(char *line)
 {
 	if (!line)
 		return (0);
@@ -58,7 +58,7 @@ void	ft_free(char **str)
 	*str = NULL;
 }
 
-int		ft_final_line(char **str, char **line)
+int	ft_final_line(char **str, char **line)
 {
 	int		i;
 	char	*tmp;
@@ -78,9 +78,9 @@ int		ft_final_line(char **str, char **line)
 	return (1);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
-	static char *str;
+	static char	*str;
 	int			state;
 	char		*tmp;
 
@@ -89,11 +89,11 @@ int		get_next_line(int fd, char **line)
 		str = ft_char_calloc(1);
 	if (BUFFER_SIZE <= 0 || BUFFER_SIZE > MAXINT || !line)
 		return (-1);
-	if (!(*line = malloc(BUFFER_SIZE + 1)))
-		return (-1);
+	*line = malloc(BUFFER_SIZE + 1);
 	while (state > 0 && !ft_check_new_line(str))
 	{
-		if ((state = read(fd, *line, BUFFER_SIZE)) < 0)
+		state = read(fd, *line, BUFFER_SIZE);
+		if (state < 0)
 			return (-1);
 		*(*line + state) = '\0';
 		str = ft_strjoin(str, *line);
