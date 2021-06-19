@@ -1,4 +1,6 @@
 #include "stack.h"
+#include "utils.h"
+#include <unistd.h>
 
 void	fill_stack(t_stack *stack, int *array, size_t size)
 {
@@ -53,24 +55,26 @@ void	print_stack(t_stack *stack, bool backward)
 {
 	t_node	*curr_node;
 
-	printf("stack_%s ", stack->label);
+	put_str_suffix_line("stack: ", stack->label);
 	if (!backward)
 	{
-		printf("---forward---\n");
+		put_str_suffix_line("---forward---", "");
 		curr_node = stack->bottom;
 		while (curr_node)
 		{
-			printf("%d \n", curr_node->value);
+			put_nbr(curr_node->value);
+			putchar('\n');
 			curr_node = curr_node->next;
 		}
 	}
 	else
 	{
-		printf("---backward---\n");
+		put_str_suffix_line("---backward---", "");
 		curr_node = stack->top;
 		while (curr_node)
 		{
-			printf("%d \n", curr_node->value);
+			put_nbr(curr_node->value);
+			putchar('\n');
 			curr_node = curr_node->prev;
 		}
 	}

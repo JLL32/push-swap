@@ -1,4 +1,5 @@
 #include "utils.h"
+#include <unistd.h>
 
 size_t	ft_strlen(const char *s)
 {
@@ -60,4 +61,11 @@ int	ft_atoi(const char *str)
 	while (*(str + j) >= 48 && *(str + j) <= 57)
 		res = res * 10 + *(str + j++) - '0';
 	return (res * temp);
+}
+
+void	put_str_suffix_line(const char *str, const char *suffix)
+{
+	write(1, str, ft_strlen(str));
+	write(1, suffix, ft_strlen(suffix));
+	write(1, "\n", 1);
 }

@@ -1,4 +1,5 @@
 #include "slice.h"
+#include "utils.h"
 
 /*
 ** NOTE: t_slice.end is exclusive
@@ -51,7 +52,8 @@ void	print_slice(t_slice *slice)
 	i = slice->start;
 	while (i < slice->end)
 	{
-		printf("%d\n", slice->data[i]);
+		put_nbr(slice->data[i]);
+		putchar('\n');
 		i++;
 	}
 }

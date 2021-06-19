@@ -9,7 +9,8 @@ SRC=src/main.c\
 	src/stack-operations.c\
 	src/stack-instructions.c\
 	src/slice.c\
-	src/utils.c
+	src/utils.c\
+	src/utils2.c
 
 CHECKER=checker
 
@@ -21,6 +22,7 @@ CHECKER_SRC=src/input.c\
 			src/get_next_line/get_next_line.c\
 			src/get_next_line/get_next_line_utils.c\
 			src/utils.c\
+			src/utils2.c\
 			src/checker.c
 CFLAGS=-Wall -Wextra -Werror
 DFLAGS=-g -fsanitize=address

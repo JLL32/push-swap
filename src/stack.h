@@ -3,8 +3,8 @@
 # include <ctype.h>
 # include <malloc/_malloc.h>
 # include <stdbool.h>
-# include <stdio.h>
 # include <stdlib.h>
+# include "utils.h"
 
 typedef struct s_node
 {

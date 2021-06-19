@@ -1,4 +1,5 @@
 #include "stack.h"
+#include "utils.h"
 
 void	swap(t_stack *stack, bool display)
 {
@@ -10,7 +11,7 @@ void	swap(t_stack *stack, bool display)
 		stack->top->value = stack->top->prev->value;
 		stack->top->prev->value = tmp;
 		if (display)
-			printf("s%s\n", stack->label);
+			put_str_suffix_line("s", stack->label);
 	}
 }
 
@@ -20,7 +21,7 @@ void	rotate(t_stack *stack, bool display)
 	{
 		prepend(stack, pop_top(stack));
 		if (display)
-			printf("r%s\n", stack->label);
+			put_str_suffix_line("r", stack->label);
 	}
 }
 
@@ -30,7 +31,7 @@ void	reverse_rotate(t_stack *stack, bool display)
 	{
 		append(stack, pop_bottom(stack));
 		if (display)
-			printf("rr%s\n", stack->label);
+			put_str_suffix_line("rr", stack->label);
 	}
 }
 
@@ -40,6 +41,6 @@ void	send(t_stack *stack_src, t_stack *stack_dst, bool display)
 	{
 		append(stack_dst, pop_top(stack_src));
 		if (display)
-			printf("p%s\n", stack_dst->label);
+			put_str_suffix_line("p", stack_dst->label);
 	}
 }
