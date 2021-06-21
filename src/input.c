@@ -1,5 +1,7 @@
 #include "input.h"
+#include "get_next_line/get_next_line.h"
 #include "utils.h"
+#include <limits.h>
 
 static bool	is_dup(int *arr, size_t size, int value)
 {
@@ -35,7 +37,7 @@ static void	reverse_arr(int *arr, size_t size)
 	}
 }
 
-static bool	is_number(char *str)
+static bool	is_int(char *str)
 {
 	size_t	i;
 	size_t	str_l;
@@ -44,6 +46,12 @@ static bool	is_number(char *str)
 	i = 0;
 	if (str[i] == '-')
 		i++;
+	if (str_l > 10 + i
+		|| ft_atoi(str) > INT_MAX
+		|| ft_atoi(str) < INT_MIN)
+	{
+		return (false);
+	}
 	while (i < str_l)
 	{
 		if (str[i] < 48 || str[i] > 57)
@@ -65,7 +73,7 @@ int	*input_from_arg(int argc, char **argv)
 	i = 0;
 	while (i < count)
 	{
-		if (!is_number(*argv) || is_dup(res, i, ft_atoi(*argv)))
+		if (!is_int(*argv) || is_dup(res, i, ft_atoi(*argv)))
 		{
 			free(res);
 			write(2, "Error\n", ft_strlen("Error\n"));

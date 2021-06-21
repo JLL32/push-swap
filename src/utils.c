@@ -36,13 +36,13 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (ft_memncmp(s1, s2, n));
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int				j;
-	unsigned long	res;
-	int				temp;
+	long			res;
+	long			sign;
 
-	temp = 1;
+	sign = 1;
 	j = 0;
 	res = 0;
 	while (*str > 0 && *str <= 32)
@@ -53,14 +53,14 @@ int	ft_atoi(const char *str)
 	}
 	if (*str == '-')
 	{
-		temp = -1;
+		sign = -1;
 		str++;
 	}
 	else if (*str == '+')
 		str++;
 	while (*(str + j) >= 48 && *(str + j) <= 57)
 		res = res * 10 + *(str + j++) - '0';
-	return (res * temp);
+	return (res * sign);
 }
 
 void	put_str_suffix_line(const char *str, const char *suffix)
