@@ -3,11 +3,14 @@
 #include "input.h"
 #include "utils.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 static int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
 {
+	if (!*op)
+		return (-1);
 	if (ft_strncmp(op, "ra", ft_strlen(op)) == 0)
-		rotate(stack_a, false);
+		rotate(stack_a, true);
 	else if (ft_strncmp(op, "rb", ft_strlen(op)) == 0)
 		rotate(stack_b, false);
 	else if (ft_strncmp(op, "rra", ft_strlen(op)) == 0)

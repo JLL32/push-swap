@@ -2,6 +2,7 @@
 #include "get_next_line/get_next_line.h"
 #include "utils.h"
 #include <limits.h>
+#include <stdlib.h>
 
 static bool	is_dup(int *arr, size_t size, int value)
 {
@@ -68,6 +69,8 @@ int	*input_from_arg(int argc, char **argv)
 	size_t	count;
 
 	count = argc - 1;
+	if (count < 1)
+		exit(EXIT_SUCCESS);
 	argv++;
 	res = malloc(sizeof(int) * count);
 	i = 0;
