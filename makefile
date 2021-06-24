@@ -8,6 +8,7 @@ SRC=src/main.c\
 	src/stack-utils.c\
 	src/stack-operations.c\
 	src/stack-instructions.c\
+	src/stack-instructions-both.c\
 	src/slice.c\
 	src/utils.c\
 	src/utils2.c
@@ -18,6 +19,7 @@ CHECKER_SRC=src/input.c\
 			src/stack.c\
 			src/stack-utils.c\
 			src/stack-operations.c\
+			src/stack-instructions-both.c\
 			src/stack-instructions.c\
 			src/get_next_line/get_next_line.c\
 			src/get_next_line/get_next_line_utils.c\

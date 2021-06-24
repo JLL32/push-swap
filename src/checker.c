@@ -7,8 +7,6 @@
 
 static int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
 {
-	if (!*op)
-		return (-1);
 	if (ft_strncmp(op, "ra", ft_strlen(op)) == 0)
 		rotate(stack_a, true);
 	else if (ft_strncmp(op, "rb", ft_strlen(op)) == 0)
@@ -25,6 +23,12 @@ static int	execute_ops(char *op, t_stack *stack_a, t_stack *stack_b)
 		send(stack_b, stack_a, false);
 	else if (ft_strncmp(op, "pb", ft_strlen(op)) == 0)
 		send(stack_a, stack_b, false);
+	else if (ft_strncmp(op, "ss", ft_strlen(op)) == 0)
+		swap_both(stack_a, stack_b, false);
+	else if (ft_strncmp(op, "rr", ft_strlen(op)) == 0)
+		rotate_both(stack_a, stack_b, false);
+	else if (ft_strncmp(op, "rrr", ft_strlen(op)) == 0)
+		reverse_rotate_both(stack_a, stack_b, false);
 	else
 		return (-1);
 	return (1);
@@ -51,7 +55,7 @@ int	main(int argc, char **argv)
 	fill_stack(stack_a, input, argc - 1);
 	while (get_next_line(0, &line) > 0)
 	{
-		if (execute_ops(line, stack_a, stack_b) == -1)
+		if (*line == '\0' || execute_ops(line, stack_a, stack_b) == -1)
 		{
 			write(2, "Error\n", 6);
 			free_memory(stack_a, stack_b, line, input);
