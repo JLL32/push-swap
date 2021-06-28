@@ -1,5 +1,4 @@
 ROOT=..
-TIME_LIMIT=1
 
 
 

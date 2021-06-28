@@ -1,5 +1,4 @@
 #include "stack.h"
-#include "get_next_line/get_next_line.h"
 #include "input.h"
 #include "utils.h"
 #include <stdlib.h>
