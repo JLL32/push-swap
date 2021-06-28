@@ -1,7 +1,6 @@
 #ifndef STACK_H
 # define STACK_H
 # include <ctype.h>
-# include <malloc/_malloc.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include "utils.h"

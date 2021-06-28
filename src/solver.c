@@ -24,8 +24,8 @@ static int	comparer_smallest(int a, int b)
 
 void	solve_five(t_stack *stack_a, t_stack *stack_b)
 {
-	send_extrema(stack_a, stack_b, comparer_smallest, INT32_MAX);
-	send_extrema(stack_a, stack_b, comparer_smallest, INT32_MAX);
+	send_extrema(stack_a, stack_b, comparer_smallest, INT_MAX);
+	send_extrema(stack_a, stack_b, comparer_smallest, INT_MAX);
 	solve_three(stack_a);
 	send(stack_b, stack_a, true);
 	send(stack_b, stack_a, true);

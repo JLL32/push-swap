@@ -11,30 +11,18 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-static int	ft_memncmp(const void *s1, const void *s2, size_t n)
+int	ft_strcmp(const char *x, const char *y)
 {
-	int				i;
-	unsigned char	*str1;
-	unsigned char	*str2;
-
-	if (n == 0)
-		return (0);
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	i = 0;
-	while (i < (int)n - 1 && *(str1 + i) == *(str2 + i))
+	while (*x)
 	{
-		if ((*(str1 + i) || *(str2 + i)) == '\0')
+		if (*x != *y)
 			break ;
-		i++;
+		x++;
+		y++;
 	}
-	return (*(str1 + i) - *(str2 + i));
+	return (*(const unsigned char *) x - *(const unsigned char *) y);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	return (ft_memncmp(s1, s2, n));
-}
 
 long	ft_atoi(const char *str)
 {

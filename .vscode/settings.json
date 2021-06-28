@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "__config": "c"
+        "__config": "c",
+        "solver.h": "c",
+        "utils.h": "c",
+        "ctype.h": "c"
     }
 }

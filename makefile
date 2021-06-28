@@ -1,4 +1,4 @@
-CC=gcc
+CC=clang
 SRC=src/main.c\
 	src/input.c\
 	src/solver.c\
@@ -21,8 +21,6 @@ CHECKER_SRC=src/input.c\
 			src/stack-operations.c\
 			src/stack-instructions-both.c\
 			src/stack-instructions.c\
-			src/get_next_line/get_next_line.c\
-			src/get_next_line/get_next_line_utils.c\
 			src/utils.c\
 			src/utils2.c\
 			src/checker.c

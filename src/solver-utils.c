@@ -38,7 +38,7 @@ void	send_all_greatest(t_stack *stack_src, t_stack *stack_dst)
 {
 	while (stack_src->length)
 	{
-		send_extrema(stack_src, stack_dst, comparer_greatest, INT32_MIN);
+		send_extrema(stack_src, stack_dst, comparer_greatest, INT_MIN);
 	}
 }
 
@@ -46,7 +46,7 @@ void	send_from_top(t_stack *stack_src, t_stack *stack_dst, int value)
 {
 	while (stack_src->top->value != value)
 	{
-		if (ft_strncmp(stack_src->label, "b", ft_strlen(stack_src->label)) == 0
+		if (ft_strcmp(stack_src->label, "b") == 0
 			&& (stack_src->top->prev)
 			&& stack_src->top->prev->value == value)
 			swap(stack_src, true);

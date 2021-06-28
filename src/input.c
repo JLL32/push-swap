@@ -45,7 +45,7 @@ static bool	is_int(char *str)
 
 	str_l = ft_strlen(str);
 	i = 0;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	if (str_l > 10 + i
 		|| ft_atoi(str) > INT_MAX
